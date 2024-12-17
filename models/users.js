@@ -1,6 +1,4 @@
-// -------------------- Import Zone --------------------
 const mongoose = require("mongoose");
-// -------------------- end of Import Zone --------------------
 
 // -------------------- start of the embedded documents part --------------------
 const aspirationsSchema = mongoose.Schema({
@@ -50,10 +48,5 @@ const usersSchema = new mongoose.Schema({
 });
 // -------------------- end of the Schema's Zone --------------------
 
-// -------------------- Model's Zone --------------------
 const users = mongoose.model("users", usersSchema);
-// -------------------- end of Model's Zone --------------------
-
-// -------------------- Export Zone --------------------
 module.exports = users;
-// -------------------- Export Zone --------------------
