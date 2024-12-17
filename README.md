@@ -6,13 +6,14 @@ The API has been designed to work with [mongoDB](https://www.mongodb.com/) a NoS
 
 ## Tools Used
 
-To make this API I used some frameworks and lib. Here's the list :
+To make this API I used some frameworks and libs. Here's the list :
 
 - Express.js (to make the local server and routes)
 - Bcrypt (to hash the password)
+- uid2 (Generate random token using cryptographic's method )
 - dotenv (to create env variable)
-- moment (to formate date like wanted)
-- swagger (an GUI API documentation to improve understanding of the request build, Btw you can acces the to the swagger with the following [url](http://localhost:3000/doc/api/) )
+- moment (to format date like wanted)
+- swagger (an GUI API documentation to improve understanding of the request build, Btw you can acces to the swagger with the following [url](http://localhost:3000/doc/api/) )
 
 ## Get it locally
 
@@ -22,7 +23,7 @@ To get it locally you can do this if you use https:
 git clone https://github.com/ThisIsLuckyluck/ByeByeCanap-API.git
 ```
 
-else if you want to get it via SSH you can also do this :
+Otherwise if you want to get it via SSH you can also do this :
 
 ```bash
 git clone git@github.com:ThisIsLuckyluck/ByeByeCanap-API.git
@@ -36,7 +37,7 @@ git clone git@github.com:ThisIsLuckyluck/ByeByeCanap-API.git
 npm i
 ```
 
-### using YARN
+### Using YARN
 
 ```bash
 yarn install
@@ -44,7 +45,7 @@ yarn install
 
 ## Set up environment
 
-If you want to run this API locally you must create a ".env" files in the root of the projet, or just rename the ".env-example" file and replacing the global value by yours
+If you want to run this API locally you must create a ".env" files in the root of the projet, or just rename the ".env-example" file by ".env" and replacing the CONNECTION_STRING value by yours
 
 And it's done !
 
@@ -68,7 +69,7 @@ To run it using Yarn you can do :
 yarn start
 ```
 
-### Run it using Nodemon (recommanded)
+### Run it using Nodemon (recommended)
 
 To run it using nodemon you can do :
 
