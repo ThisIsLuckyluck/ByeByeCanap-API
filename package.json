@@ -1,9 +1,29 @@
 {
   "name": "byebyecanap-api",
   "version": "1.0.0",
+  "description": "Boilerplate API for MongoDB, Express, and Node.js",
   "private": true,
+  "main": "bin/www",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "build": "npm install --production",
+    "test": "mocha tests/**/*.test.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "api",
+    "mongodb",
+    "boilerplate",
+    "backend"
+  ],
+  "author": "ThisIsLuckyluck",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThisIsLuckyluck/ByeByeCanap-API.git"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -19,5 +39,14 @@
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "uid2": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.4.1",
+    "mocha": "^10.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
