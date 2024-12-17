@@ -1,6 +1,7 @@
 // Express's import
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 // Dependency import
 const path = require("path");
@@ -22,7 +23,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/doc/api", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
 module.exports = app;
