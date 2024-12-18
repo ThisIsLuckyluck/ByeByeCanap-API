@@ -55,13 +55,31 @@ router.post("/signup", (req, res) => {
         email: req.body.email,
         password: hash,
         token: uid2(32),
-        userType: "particular",
+        userType: "individual",
         lastname: req.body.lastname,
         firstname: req.body.firstname,
         age: req.body.age,
         birthDate: formattedBirthDate,
         gender: req.body.gender,
         inscriptionDate: inscriptionDate,
+        aspirations: {
+          themesInterest: req.body.themesInterest,
+          categoriesInterest: req.body.categoriesInterest,
+          themeSkill: req.body.themeSkill,
+          categoriesSkill: req.body.categoriesSkill
+        },
+        availability: {
+          availability: req.body.availability,
+          locationPreference: req.body.locationPreference
+        },
+        values: {
+          preferredPeople: req.body.preferredPeople,
+          preferredGroupType: req.body.preferredGroupType,
+          personalValues: req.body.personalValues,
+          causes: req.body.causes
+        },
+        avatar: req.body.avatar,
+        descriptionProfile: req.body.descriptionProfile
       });
       newUser
         .save()
@@ -69,6 +87,7 @@ router.post("/signup", (req, res) => {
           // if everything works fine you will get this response
           res.json({
             result: "User has been successfully been created",
+            id: data._id,
             token: data.token,
           });
         })
@@ -102,17 +121,14 @@ router.post("/signin", (req, res) => {
     .then((data) => {
       // if data returns something, check that the hashed possword (stored in the database) and that the hashed password in the body match
       if (data && bcrypt.compareSync(req.body.password, data.password)) {
-        // if it's true, it's updating the user's token
-        const newToken = uid2(32);
-        data.token = newToken;
 
         data
           .save()
-          .then((updatedData) => {
+          .then((data) => {
             // if everything was fine, then it returns this
             res.json({
               result: "User has successfully logged",
-              token: updatedData.token,
+              token: data.token,
             });
           })
           .catch((error) => {
@@ -191,25 +207,30 @@ router.put("/updateUser/:token", (req, res) => {
     "gender",
     "avatar",
     "descriptionProfile",
-    "aspirations",
+
+    // aspirations embedded document ------
+    "themesInterest",
+    "categoriesInterest",
+    "themeSkill",
+    "categoriesSkill",
+
+    // availability ------
     "availability",
+    "locationPreference",
+
+    // values ------
+    "preferredPeople",
+    "preferredGroupType",
+    "personalValues",
+    "causes",
   ];
 
   // Iterate over the updatable fields and add them to the updateFields object if they are present in the body
   updatableFields.forEach((field) => {
     if (req.body[field] !== undefined) {
       // Check if the field is an object for embedded documents
-      if (["aspirations", "availability", "values"].includes(field)) {
-        if (
-          typeof req.body[field] === "object" &&
-          !Array.isArray(req.body[field])
-        ) {
-          updateFields[field] = req.body[field];
-        }
-      } else {
         updateFields[field] = req.body[field];
       }
-    }
   });
   // If password is being updated, hash it again
   if (updateFields.password) {
