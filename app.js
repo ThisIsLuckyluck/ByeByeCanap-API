@@ -13,6 +13,7 @@ require("dotenv").config();
 
 // routes import
 const usersRouter = require("./routes/users");
+const eventsRouter = require("./routes/events");
 
 // app usage section
 app.use(cors());
@@ -24,5 +25,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/doc/api", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/users", usersRouter);
+app.use("/events", eventsRouter);
 
 module.exports = app;
