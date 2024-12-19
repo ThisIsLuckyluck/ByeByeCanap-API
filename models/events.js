@@ -19,6 +19,10 @@ const locationSchema = mongoose.Schema({
 
 // -------------------- start of the Schema's zone --------------------
 const eventsSchema = new mongoose.Schema({
+  organizer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "users",
+  },
   title: String,
   theme: String,
   category: String,
